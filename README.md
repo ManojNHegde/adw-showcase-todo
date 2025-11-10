@@ -9,8 +9,10 @@
 1. **PLAN** - Classify the issue, create a branch, and generate an implementation plan
 2. **BUILD** - Implement the solution based on the plan
 3. **TEST** - Run comprehensive tests with automatic failure resolution
+4. **REVIEW** - Perform code review checking for quality, security, and performance
+5. **DOCUMENT** - Generate comprehensive documentation including README updates and docstrings
 
-Think of it as a **fully automated developer** that can take requirements and turn them into tested, production-ready code with pull requests.
+Think of it as a **fully automated developer** that can take requirements and turn them into tested, reviewed, and documented production-ready code with pull requests.
 
 ## What This Showcase Demonstrates
 
@@ -18,8 +20,8 @@ This repository contains a **minimal To-Do CLI application** that demonstrates t
 
 - **Empty starting point** - The `todo/cli.py` starts with just comments
 - **Real issue** - A GitHub issue describes what needs to be built
-- **Automated development** - ADW classifies, plans, implements, and tests the solution
-- **Generated PR** - Complete with implementation, tests, and documentation
+- **Automated development** - ADW classifies, plans, implements, tests, reviews, and documents the solution
+- **Generated PR** - Complete with implementation, tests, code review, and documentation
 
 ### The Workflow in Action
 
@@ -38,7 +40,11 @@ Writes Tests: tests/test_todo.py (comprehensive test suite)
         ↓
 Runs Tests: Automatically fixes failures up to 4 times
         ↓
-Creates Pull Request: Ready for review!
+Reviews Code: Checks quality, security, performance
+        ↓
+Generates Docs: Updates README and adds docstrings
+        ↓
+Creates Pull Request: Production-ready!
 ```
 
 ## Prerequisites
@@ -89,9 +95,9 @@ uv sync
 
 ## Running the Demo
 
-### Option 1: Full Automated Workflow (Recommended)
+### Option 1: Complete 5-Phase Workflow (Recommended)
 
-Run the complete PLAN → BUILD → TEST workflow:
+Run the complete PLAN → BUILD → TEST → REVIEW → DOCUMENT workflow:
 
 ```bash
 # First, create a GitHub issue using the provided template
@@ -100,19 +106,26 @@ gh issue create --title "Implement add and list commands for To-Do CLI" \
 
 # Note the issue number (e.g., #1)
 
-# Run the full ADW workflow
-uv run adws/adw_plan_build_test.py <issue-number>
+# Run the full 5-phase ADW workflow
+uv run adws/adw_plan_build_test_review_document.py <issue-number>
 ```
 
 **What happens:**
-1. ADW fetches the issue from GitHub
-2. Classifies it as a `/feature`
-3. Creates branch: `feat-issue-1-adw-xxxxxxxx-todo-commands`
-4. Generates implementation plan in `specs/`
-5. Implements the To-Do CLI with add/list/remove commands
-6. Writes comprehensive tests
-7. Runs tests (with automatic failure resolution)
-8. Creates a pull request
+1. **PLAN**: ADW fetches and classifies the issue, creates branch, generates implementation plan
+2. **BUILD**: Implements the To-Do CLI with add/list/remove commands
+3. **TEST**: Writes and runs comprehensive tests (with automatic failure resolution)
+4. **REVIEW**: Performs code review checking quality, security, and performance
+5. **DOCUMENT**: Generates comprehensive documentation and docstrings
+6. Creates a production-ready pull request
+
+### Option 1b: 3-Phase Workflow (Faster)
+
+Run just PLAN → BUILD → TEST (without review and documentation):
+
+```bash
+# Run the 3-phase workflow
+uv run adws/adw_plan_build_test.py <issue-number>
+```
 
 ### Option 2: Step-by-Step Workflow
 
@@ -130,6 +143,14 @@ uv run adws/adw_build.py <issue-number> <adw-id>
 # Step 3: TEST phase
 uv run adws/adw_test.py <issue-number>
 # Output: Runs tests, auto-fixes failures, posts results
+
+# Step 4: REVIEW phase
+uv run adws/adw_review.py <issue-number>
+# Output: Performs code review, posts findings, commits results
+
+# Step 5: DOCUMENT phase
+uv run adws/adw_document.py <issue-number>
+# Output: Generates documentation, updates README, commits changes
 ```
 
 ### Option 3: Automated Triggers
